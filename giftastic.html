@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GifTastic</title>
+    <!-- Keeping this link in seems to mess up the functionality: <link rel="stylesheet" href="assets/css/reset.css"> -->
+    <link rel="stylesheet" href="assets/css/giftasticstyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+    <!-- <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script> -->
+
+
+
+
+</head>
+<body>
+
+    <!-- area to hold search term buttons -->
+    <div id="buttonsArea"></div>
+
+    <!-- search term input field to add new search term button-->
+    <form id="search-form">
+        <label for="search-input">Add a button to search for a GIF!</label>
+        <input type="text" id="search-input"><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- area to hold images/gifs returned in response from Giphy -->
+    <div id="searches"></div>
+
+    <script type="text/javascript">
+
+        <!-- -->
+        $(function(){
+            populateButtons(topicsArray, 'searchButton', '#buttonsArea');
+            console.log("Page loaded");
+        })
+
+        <!-- initial search term buttons -->
+        var topicsArray = ['iguana', 'beach', 'corona'];
+
+        <!-- add searcg term to array and add as new button -->
+        function populateButtons(topicsArray, classToAdd, areaToAddTo) {
+            $(areaToAddTo).empty();
+            for(var i=0; i < topicsArray.length; i++) {
+                var a = $('<button>');
+                a.addClass(classToAdd);
+                a.attr('data-type', topicsArray[i]);
+                a.text(topicsArray[i]);
+                $(areaToAddTo).append(a);
+            }
+        }
+
+        <!-- function for search term button to search for and return results for search term -->
+        $(document).on('click', '.searchbutton', function() {
+            var type = $(this).data('type');
+            console.log(type);
+        })
+
+    </script>
+
+</body>
+</html>
